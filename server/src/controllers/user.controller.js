@@ -7,11 +7,10 @@ const EmailService = require("../services/email.services");
 
 class User {
     async signUp(req,res) {
-        const data = req.body;
-        let pass = data.password;
+        let {name, email, pass} = req.body;
 
         //Email Should be unique & include @iiitdwd.ac.in
-        if(!Utility.uniqueEmail(data.email)){return res.status(400).json("Email Already Used !")}
+        if(!Utility.uniqueEmail(email)){return res.status(400).json("Email Already Used !")}
 
         try{
             //Hash Password
@@ -20,19 +19,28 @@ class User {
 
             //Store Details
             const details = new Users({
-                name: data.name,
-                email: data.email,
+                name: name,
+                email: email,
                 password: pass,
             })
 
             //Save
-            const newUser = await details.save();
+            var newUser = await details.save();
 
-            //Registration Successful
+            //Generate & Store JWToken in db
+            const Token = await details.generateAuthToken();
+            await newUser.updateOne({token: Token});
+
+            //save Token in cookie
+            res.cookie("jwt", Token, {
+                expires: new Date(Date.now() + 604800000),
+                httpOnly: true,
+                // secure: true   //allows only https connections
+            });
 
             //Send verification Mail
             let Mail = new EmailService();
-            Mail.sendVerificationMail(newUser._id, newUser.email, newUser.name, (response) => {
+            Mail.sendVerificationMail(Token, newUser._id, newUser.email, newUser.name, (response) => {
                 console.log(response);
                 if (response == 200) {
 
@@ -46,7 +54,7 @@ class User {
                 }
             });
         }
-        catch(e) { res.status(404).json(error)}
+        catch(e) { res.status(404).json(e)}
     }
 }
 

@@ -25,11 +25,15 @@ class Auth {
             const user = await Users.findOne({email: email});
             const isMatch = bcrypt.compare(password, user.password);
             if(isMatch && user.verification === true) {
-                //create token
-                const token = Utils.createJWT(iser._id);
-                console.log(token); 
-                //store token in cookie
-                res.cookie('access-token', token);
+
+                const token = await user.generateAuthToken();
+
+                //save token in cookie
+                res.cookie("jwt", token, {
+                    expires: new Date(Date.now() + 604800000),
+                    httpOnly: true,
+                    // secure: true
+                });
 
                 res.status(200).send(user);
             }else{
