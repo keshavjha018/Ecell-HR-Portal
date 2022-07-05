@@ -2,7 +2,7 @@
 
 const Users = require("./../../db/models/user.schema");
 const bcrypt = require("bcryptjs");
-const Utility = require('../services/Utility.services');
+const Utility = require('../services/utility.services');
 const EmailService = require("../services/email.services");
 
 class User {
