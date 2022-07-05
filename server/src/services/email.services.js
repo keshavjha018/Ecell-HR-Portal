@@ -1,5 +1,5 @@
 require("dotenv").config();
-const Utility = require("./Utility.services");
+const Utility = require("./utility.services");
 const nodemailer = require("nodemailer");
 const Users = require("./../../db/models/user.schema");
 

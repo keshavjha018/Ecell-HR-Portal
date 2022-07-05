@@ -1,5 +1,5 @@
 const Users = require("../../db/models/user.schema");
-const Utils = require("../services/Utility.services");
+const Utils = require("../services/utility.services");
 const bcrypt = require("bcryptjs");
 
 class Auth {
