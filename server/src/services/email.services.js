@@ -27,15 +27,11 @@ const apiHostUrl = "http://localhost:8000/api/auth/";
 
 class Email {
 
-    sendVerificationMail = async(userId, userEmail, userName, callback) => {
+    sendVerificationMail = async(Token, userId, userEmail, userName, callback) => {
         let subject = "Email Verification | HR Portal 📧";
 
         
         try{
-            //Generate & Store Token
-            const Token = await Utility.generateToken();
-            await Users.findByIdAndUpdate(userId, {token: Token});
-            
             const verificationLink = apiHostUrl + `mailverification/${userId}/${Token}`;
             const message = `Hey ${userName} ! <br> Please click this Link to verify your Email before Logging in  :: ${verificationLink}`;
     
