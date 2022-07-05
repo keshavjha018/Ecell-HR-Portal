@@ -9,15 +9,23 @@ const loginRequired = async(req,res,next)=> {
         const token = req.cookies.jwt;      //"jwt" = cookie name
         if(token) {
             const validToken = jwt.verify(token, process.env.JWT_SECRET);
+            const user = await Users.findOne({_id:validToken._id  });
+            if(!user){ 
+                throw new Error("Authentication problem .....");
+            }
 
-            if(validToken){
-                res.user = validtoken.id;
-                next();
-            }
-            else{
-                console.log("Token Expired");
-                res.redirect("/user/login");
-            }
+            req.rootUser = user;
+            req.token = token;
+            next();
+
+            // if(validToken){
+            //     res.user = validToken.id;
+            //     next();
+            // }
+            // else{
+            //     console.log("Token Expired");
+            //     res.redirect("/user/login");
+            // }
         }
         else{
             console.log("Token Not Found");
