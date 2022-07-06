@@ -1,5 +1,6 @@
 //Frequently used functions
-
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const User = require('../../db/models/user.schema');
 const { v4: uuidv4 } = require("uuid");
 
@@ -28,4 +29,8 @@ const verifiedUser = async(id) =>{
     }
 }
 
-module.exports = {uniqueEmail, generateToken, verifiedUser};
+const createJWT = async(id) => {
+    return jwt.sign({id}, process.env.JWT_SECRET);
+}
+
+module.exports = {uniqueEmail, generateToken, createJWT, verifiedUser};
