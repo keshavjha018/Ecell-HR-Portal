@@ -16,4 +16,16 @@ const generateToken = async() => {
     return token;
 }
 
-module.exports = {uniqueEmail, generateToken};
+const verifiedUser = async(id) =>{
+    try{
+        let user = await User.findById(id);
+        if(user.verification === true) {
+            return true;
+        }else{return false}
+    }catch(e){
+        console.log(error);
+        return false;
+    }
+}
+
+module.exports = {uniqueEmail, generateToken, verifiedUser};

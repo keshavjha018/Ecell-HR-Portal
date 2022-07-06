@@ -1,8 +1,8 @@
 const express = require("express");
 
 const userRoutes = require("./user.route");
+const complaintRoutes = require("./complaint.route");
 // const authRoutes = require("./auth.route");
-// const complaintRoutes = require("./complaint.route");
 
 //---INSTANCE------
 const router = new express.Router();
@@ -12,8 +12,8 @@ router.get('/', async(req,res) => {
 });
 
 router.use("/api/user", userRoutes);
+router.use("/api/complaint", complaintRoutes);
 // router.use("/api/auth", authRoutes);
-// router.use("/api/complaint", complaintRoutes);
 
 module.exports = router;
 

@@ -1,9 +1,17 @@
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
+import ComplaintForm from './pages/complaint';
+
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World !</h1>
-    </div>
+    <>
+      <Router>
+      <Routes>
+      <Route exact path="/" element={<ComplaintForm/>} />
+
+      </Routes>
+      </Router>
+    </>
   );
 }
 
