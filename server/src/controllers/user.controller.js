@@ -7,7 +7,7 @@ const EmailService = require("../services/email.services");
 
 class User {
     async signUp(req,res) {
-        let {name, email, pass} = req.body;
+        let {name, email, password} = req.body;
 
         //Email Should be unique & include @iiitdwd.ac.in
         if(!Utility.uniqueEmail(email)){return res.status(400).json("Email Already Used !")}
@@ -15,13 +15,13 @@ class User {
         try{
             //Hash Password
             const salt = await bcrypt.genSalt(10);
-            pass = await bcrypt.hash(pass, salt);
+            password = await bcrypt.hash(password, salt);
 
             //Store Details
             const details = new Users({
                 name: name,
                 email: email,
-                password: pass,
+                password: password,
             })
 
             //Save

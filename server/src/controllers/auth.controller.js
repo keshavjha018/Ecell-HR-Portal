@@ -23,9 +23,16 @@ class Auth {
         const {email, password} = req.body;
         try {
             const user = await Users.findOne({email: email});
-            const isMatch = bcrypt.compare(password, user.password);
-            if(isMatch && user.verification === true) {
+            if(!user){
+                return res.status(400).json("User Not Registered");
+            }
 
+            const isMatch = await bcrypt.compare(password, user.password);
+            if(isMatch===false){
+                return res.status(400).json("Incorrect Password");
+            }
+
+            if(user.verification === true) {
                 const token = await user.generateAuthToken();
 
                 //save token in cookie
@@ -35,6 +42,7 @@ class Auth {
                     // secure: true
                 });
 
+                console.log("Login Success", user);
                 res.status(200).send(user);
             }else{
                 res.status(400).json("Email Not Verified");
