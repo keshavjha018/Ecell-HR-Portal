@@ -1,0 +1,88 @@
+.signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Roboto;
+    background-color: #f7f8fb;
+}
+
+.signupRight {
+    /* flex: 1; */
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.signupBox {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+.signupInput {
+    height: 3rem;
+    border-radius: 10px;
+    border: 1px solid grey;
+    font-size: 18px;
+    padding-left: 20px;
+    margin: 5px;
+}
+
+.signupInput:focus {
+    outline: none;
+}
+
+.signupBtn {
+    height: 3rem;
+    margin: 1rem 0.5rem 1rem 0.5rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #009e22;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+}
+
+.signupBtn:hover {
+    background-color: #007c1b;
+}
+
+.signupForgot {
+    text-align: center;
+    color: #1171f0;
+}
+
+.headText {
+    text-align: center;
+    font-weight: 400;
+    font-size: larger;
+    margin: 1rem;
+}
+
+.newText {
+    text-align: center;
+}
+
+.logInBtn {
+    margin: 1rem;
+    color: #1171f0;
+}
+
+@media screen and (max-width: 450px) {
+    .signup {
+        align-items: start;
+    }
+
+    .signupRight {
+        padding: 1rem;
+    }
+}
