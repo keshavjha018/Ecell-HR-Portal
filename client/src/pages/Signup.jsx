@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom'
 import "./signup.css";
 import axios from "axios";
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import {useNavigate} from 'react-router-dom';
 
 function Signup() {
@@ -24,21 +24,29 @@ function Signup() {
     const Register= async()=>{
 
         if(user.password !== user.rePassword) {
-            alert("Password and Confirm Password Must be Same !");
+            toast.error("Password and Confirm Password Must be Same !");
             return;
         }
 
+        //Start Waiting
+        const loadToast = toast.loading("Signing Up. Please Wait !")
+
         try{
             const res = await axios.post("http://localhost:8000/api/user/signup", user);
+            
+            toast.dismiss(loadToast);
+
+            if(res){
+                toast.success("A verification link has been sent to your email.");
+            }
+
             console.log("Signup Successful", res);
             navigate('/login'); //issue here
         }
         catch(e) {
-            console.log("something went wrong");
-            // alert("Something went wrong!")
+            toast.dismiss(loadToast);
+            toast.error("Something went wrong !");
         }
-
-
     }
 
     return (
@@ -46,7 +54,7 @@ function Signup() {
         <div className="signup">
             <div className="signupRight">
                 <span className="headText">SignUp to Continue...</span>
-                <form className="signupBox flex-col gap-2" >
+                <div className="signupBox flex-col gap-2" >
                     <input type="text" required placeholder="Name" className="signupInput"  name="name" value={user.name} onChange={handleChange}/>
                     <input type="email" required placeholder="Email" className="signupInput"  name="email" value={user.email}  onChange={handleChange}/>
                     <input type="password" required placeholder="Password" className="signupInput"  name="password"  value={user.password} onChange={handleChange}/>
@@ -56,7 +64,7 @@ function Signup() {
                     <span className="newText">Already have an Account?
                         <Link className="logInBtn" to="/login">Login</Link>
                     </span>
-                </form>
+                </div>
             </div>
         </div>
         </>
