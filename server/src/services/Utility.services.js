@@ -17,8 +17,20 @@ const generateToken = async() => {
     return token;
 }
 
+const verifiedUser = async(id) =>{
+    try{
+        let user = await User.findById(id);
+        if(user.verification === true) {
+            return true;
+        }else{return false}
+    }catch(e){
+        console.log(error);
+        return false;
+    }
+}
+
 const createJWT = async(id) => {
     return jwt.sign({id}, process.env.JWT_SECRET);
 }
 
-module.exports = {uniqueEmail, generateToken, createJWT};
+module.exports = {uniqueEmail, generateToken, createJWT, verifiedUser};
