@@ -1,21 +1,25 @@
 import { RiAdminFill } from "react-icons/ri";
 import { FcHome } from "react-icons/fc";
+import "./Navbar.css";
+import { Link } from "react-router-dom";
 
-export default function Navbar(){
-    return <nav className = "nav">
-        <a href="/" className="site-title">HR Portal</a>
-        <ul>
-        <div style={{display: "flex", justifyContent: "center"}}>
-            <FcHome icon={FcHome} size = '2rem' />
-        </div>
-            {/* <FcHome icon={FcHome} size = '2rem' /> */}
-            <li className="active">
-                <a href="/home">Home</a>                
-            </li>
-            <RiAdminFill icon={RiAdminFill} size = '2rem'/>
-            <li>
-                <a href="/admin">Admin</a>
-            </li>
-        </ul>
-    </nav>
+export default function Navbar() {
+    return (
+        <>
+            <div className="navbar">
+                <Link to="/" className="logoName">HR Portal</Link>
+                <ul>
+                    <li className="active navListItem">
+                        <FcHome icon={FcHome} className="navIcon"/>
+                        <Link to="/">Home</Link>
+                    </li>
+
+                    <li className="navListItem">
+                        <RiAdminFill icon={RiAdminFill} className="navIcon"/>
+                        <Link to="/">Admin</Link>
+                    </li>
+                </ul>
+            </div>
+        </>
+    )
 }
