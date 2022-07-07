@@ -13,9 +13,9 @@ import Footer from './components/Footer';
 function App() {
   return (
     <>
-    <Navbar/>
     <ToastContainer position="top-center" autoClose="2500"/>
     <Router>
+    <Navbar/>
       <Routes>
         <Route exact path ="/" element={<Home/>} />
         <Route exact path ="/signup" element={<Signup/>} />
