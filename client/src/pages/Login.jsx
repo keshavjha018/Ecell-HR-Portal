@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import "./login.css";
 import {useRef,useState} from "react";
 import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify";
 import axios from "axios";
 
 function Login() {
@@ -10,11 +11,6 @@ function Login() {
     const password = useRef();
 
     const navigate = useNavigate();
-
-    // Submitted Email-Password
-    const handleSubmit=(e)=>{
-        e.preventDefault();         //prevents reloading page on Submit
-    }
 
     const [user, setUser] = useState({
         email: "",
@@ -28,15 +24,21 @@ function Login() {
 
     const handleLogin = async()=>{
 
+        const Loadtoast = toast.loading("Logging in Please wait !");
         try{
             const res = await axios.post("http://localhost:8000/api/auth/userlogin", user);
-            console.log("Success", res);
-            navigate('/');
-            // alert(res.data.message);
+            if(res){
+                toast.dismiss(Loadtoast);
+                toast.success("Login Successful")
+                // localStorage.setItem("userInfo", JSON.stringify(data));
+                navigate("/");
+            }
+
         }
         catch(e) {
-            console.log("something went wrong");
-            // alert("Something went wrong!")
+            toast.dismiss(Loadtoast);
+            toast.error("Wrong credentials ! Try Again");
+            // console.log("err msg:", e);
         }
 
     }
@@ -45,7 +47,7 @@ function Login() {
         <div className='login'>
             <div className="loginRight">
             <span className="headText">Log In to Continue...</span>
-                <form className="loginBox" onSubmit={handleSubmit}>
+                <div className="loginBox">
                     <input placeholder="Email" type="email" required className="loginInput " ref={email}  name="email" value={user.email} onChange={handleChange}/>
                     <input placeholder="Password" type="password" required className="loginInput" ref={password} name="password" value={user.password} onChange={handleChange}/>
                     <button className="loginBtn" onClick={handleLogin}>Log In</button>
@@ -57,7 +59,7 @@ function Login() {
                         <Link className="signUpBtn" to="/signup">Create Account</Link>
                     </span>
 
-                </form>
+                </div>
             </div>
         </div>
     )

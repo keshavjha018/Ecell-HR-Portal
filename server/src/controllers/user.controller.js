@@ -44,12 +44,12 @@ class User {
                 console.log(response);
                 if (response == 200) {
 
-                    //  Signup Successfull & verification mail send
+                    //  Signup Successful & verification mail sent
                     res.status(201).json(newUser);
                 } 
                 else {
 
-                    //  Signup Successfull & but fail to send verification mail
+                    //  Signup Successful & but fail to sent verification mail
                     res.status(500).json(newUser);
                 }
             });

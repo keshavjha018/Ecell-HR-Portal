@@ -24,12 +24,12 @@ class Auth {
         try {
             const user = await Users.findOne({email: email});
             if(!user){
-                return res.status(400).json("User Not Registered");
+                return res.status(404).json("User Not Registered");
             }
 
             const isMatch = await bcrypt.compare(password, user.password);
             if(isMatch===false){
-                return res.status(400).json("Incorrect Password");
+                return res.status(401).json("Incorrect Password");
             }
 
             if(user.verification === true) {
