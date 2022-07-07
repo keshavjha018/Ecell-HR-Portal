@@ -32,7 +32,7 @@ function Signup() {
         const loadToast = toast.loading("Signing Up. Please Wait !")
 
         try{
-            const res = await axios.post("http://localhost:8000/api/user/signup", user);
+            const res = await axios.post("/api/user/signup", user);
             
             toast.dismiss(loadToast);
 
