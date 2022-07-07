@@ -1,0 +1,100 @@
+.landing {
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+    margin-left: 11%;
+    overflow-x: hidden;
+}
+
+@media (max-width: 992px) {
+    .landing {
+        flex-direction: column-reverse;
+        margin-left: 0;
+        padding-bottom: 80px;
+        row-gap: 60px;
+    }
+}
+
+@media (max-width: 280px) {
+    .landing {
+        padding-bottom: 40px;
+    }
+}
+
+.landing .landing-text {
+    flex: 1;
+    min-width: 465px;
+}
+
+@media (max-width: 992px) {
+    .landing .landing-text {
+        max-width: 95%;
+        min-width: 0;
+        text-align: center;
+    }
+}
+
+.landing .landing-text h1 {
+    width: 100%;
+    font-size: 3.9em;
+    line-height: 1.15;
+}
+
+@media (max-width: 992px) {
+    .landing .landing-text h1 {
+        font-size: 3em;
+    }
+}
+
+@media (max-width: 500px) {
+    .landing .landing-text h1 {
+        font-size: 2em;
+    }
+}
+
+.landing .landing-text p {
+    font-size: 18px;
+    max-width: 500px;
+    margin: 1rem 0rem 2rem 0rem;
+}
+
+@media (max-width: 992px) {
+    .landing .landing-text p {
+        font-size: 16px;
+        margin: 10px auto 29.41176px;
+    }
+}
+
+@media (max-width: 500px) {
+    .landing .landing-text p {
+        font-size: 15px;
+    }
+}
+
+.regComplaintBtn {
+    display: inline-block;
+    color: white;
+    background-color: #2acfcf;
+    text-transform: capitalize;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 0.3s;
+    padding: 1rem;
+}
+
+.landing .landing-image {
+    position: relative;
+}
+
+@media screen and (max-width: 450px) {
+    .landing .landing-image {
+        right: 0rem;
+    }
+}
+
+.landing .landing-image img {
+    width: 100%;
+}
