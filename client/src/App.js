@@ -21,7 +21,7 @@ function App() {
         <Route exact path ="/signup" element={<Signup/>} />
         <Route exact path ="/login" element={<Login/>} />
         <Route exact path="/complaint" element={<ComplaintForm />} />
-        <Route exact path ="/verifymail" element={<EmailVerify/>} />
+        <Route exact path ="/verify/mail" element={<EmailVerify/>} />
         {/* <Route exact path="*" element={<Error />} /> */}
       </Routes>
       <Footer />
