@@ -1,0 +1,127 @@
+.footer {
+    padding-top: 50px;
+    background: #232127;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 70px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 705px) {
+    .footer .container {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+}
+
+.footer .logo {
+    flex: 1 0 auto;
+}
+
+/* .footer .logo img {
+    filter: brightness(10);
+} */
+
+.footer .quick-links {
+    display: flex;
+    gap: 60px;
+}
+
+@media (max-width: 705px) {
+    .footer .quick-links {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+}
+
+.footer .quick-links .links-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer .links-group span {
+    color: white;
+    font-weight: 700;
+}
+
+.footer .links-group>div {
+    display: flex;
+    flex-direction: column;
+    gap: 6.66667px;
+}
+
+.footer .links-group .footerLinks {
+    color: #bfbfbf;
+    font-size: 13px;
+    transition: 0.2s color;
+}
+
+.footer .links-group .footerLinks:hover {
+    color: cyan;
+}
+
+.footer .social-media {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer .social-media .footerSocialImg {
+    max-width: 85%;
+    transition: 0.2s transform;
+}
+
+.footer .social-media .footerSocialImg:hover {
+    transform: scale(1.1);
+    filter: invert(0%) sepia(59%) saturate(6585%) hue-rotate(125deg) brightness(86%) contrast(85%);
+}
+
+.attribution {
+    padding: 30px 0 25px 0;
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+}
+
+.attribution .outer-link {
+    font-size: 15px;
+    color: #2acfcf;
+    margin-left: 2px;
+    cursor: pointer;
+}
+
+.attribution .outer-link:hover {
+    text-decoration: underline wavy #2acfcf 2px;
+}
+
+.attribution .social-media {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    list-style: none;
+    margin-left: 5px;
+}
+
+.attribution .social-media .icon {
+    font-size: 20px;
+    color: #fff;
+}
+
+.attribution .social-media .image {
+    width: 23px;
+}
+
+.attribution .social-media .image:hover {
+    filter: none;
+    background-color: none;
+}
