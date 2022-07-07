@@ -26,11 +26,12 @@ function Login() {
 
         const Loadtoast = toast.loading("Logging in Please wait !");
         try{
-            const res = await axios.post("http://localhost:8000/api/auth/userlogin", user);
+            const res = await axios.post("/api/auth/userlogin", user);
             if(res){
                 toast.dismiss(Loadtoast);
-                toast.success("Login Successful")
-                // localStorage.setItem("userInfo", JSON.stringify(data));
+                toast.success("Login Successful");
+                const data = {name:res.data.name, id:res.data._id, email:res.data.email}
+                localStorage.setItem("userInfo", JSON.stringify(data));
                 navigate("/");
             }
 

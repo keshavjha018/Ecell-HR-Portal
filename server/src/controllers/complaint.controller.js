@@ -8,8 +8,9 @@ const EmailService = require("../services/email.services");
 class Complaint {
     
     async create(req, res) {
-        const { subject, offender, type, discription } = req.body;
+        const { subject, offender, type, discription, regno } = req.body;
         const { id } = req.params;
+        console.log(id);
         try {
             if(await Utility.verifiedUser(id)){
                 const post = new Complaints({
@@ -21,7 +22,7 @@ class Complaint {
                 });
                 const newComplaint = await post.save();
                 let Mail = new EmailService();
-                Mail.complaintRegistered(newComplaint._id)
+                Mail.complaintRegistered(newComplaint._id, regno)
                 //Save
                 res.status(201).send(newComplaint);
             }
