@@ -6,10 +6,12 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ComplaintForm from "./pages/complaint";
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <>
+    <Navbar/>
     <ToastContainer position="top-center" autoClose="2500"/>
     <Router>
       <Routes>
