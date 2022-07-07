@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ComplaintForm from "./pages/complaint";
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path ="/verifymail" element={<EmailVerify/>} />
         {/* <Route exact path="*" element={<Error />} /> */}
       </Routes>
+      <Footer />
     </Router>
     </>
   );

@@ -55,7 +55,7 @@ function Login() {
                     {/* <button onClick={handleForgotPassword} className="loginForgot">Forgot Password ?</button> */}
 
                     <hr className="hr" />
-                    <span className="newText">New User?
+                    <span className="newTextLogin">New User?
                         <Link className="signUpBtn" to="/signup">Create Account</Link>
                     </span>
 
