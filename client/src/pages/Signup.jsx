@@ -23,6 +23,11 @@ function Signup() {
 
     const Register= async()=>{
 
+        if(!user.email.includes("@iiitdwd.ac.in")){
+            toast.error("Please use Institute E-Mail Id");
+            return;
+        }
+
         if(user.password !== user.rePassword) {
             toast.error("Password and Confirm Password Must be Same !");
             return;
@@ -33,15 +38,12 @@ function Signup() {
 
         try{
             const res = await axios.post("/api/user/signup", user);
-            
             toast.dismiss(loadToast);
 
             if(res){
-                toast.success("A verification link has been sent to your email.");
+                toast(res.data.message);
+                navigate('/login');
             }
-
-            console.log("Signup Successful", res);
-            navigate('/login'); //issue here
         }
         catch(e) {
             toast.dismiss(loadToast);

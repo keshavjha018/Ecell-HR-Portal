@@ -4,6 +4,7 @@
     padding: 40px 0;
     margin-left: 11%;
     overflow-x: hidden;
+    height: 92vh;
 }
 
 @media (max-width: 992px) {
@@ -97,4 +98,10 @@
 
 .landing .landing-image img {
     width: 100%;
+}
+
+@media screen and (min-width: 450px) {
+    .landing {
+        padding-top: 0rem !important;
+    }
 }

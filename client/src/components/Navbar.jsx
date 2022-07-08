@@ -10,12 +10,12 @@ export default function Navbar() {
                 <Link to="/" className="logoName">HR Portal</Link>
                 <ul>
                     <li className="active navListItem">
-                        <FcHome icon={FcHome} className="navIcon"/>
+                        <FcHome className="navIcon"/>
                         <Link to="/">Home</Link>
                     </li>
 
                     <li className="navListItem">
-                        <RiAdminFill icon={RiAdminFill} className="navIcon"/>
+                        <RiAdminFill className="navIcon"/>
                         <Link to="/">Admin</Link>
                     </li>
                 </ul>
