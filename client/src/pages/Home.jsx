@@ -6,16 +6,16 @@ import landingPic from "../images/employees.webp";
 function Home() {
     return (
         <div>
-            <section class="landing">
-                <div class="landing-text">
+            <section className="landing">
+                <div className="landing-text">
                     <h1>Welcome to the <br /> HR PORTAL </h1>
                     <p>
                         Raise your voice against issues like Abuse, Boycott and Discrimination 
                         among the organisation.
                     </p>
-                    <Link to="/complaint" class="btn btn-md regComplaintBtn">Register Complaint</Link>
+                    <Link to="/complaint" className="btn btn-md regComplaintBtn">Register Complaint</Link>
                 </div>
-                <div class="landing-image">
+                <div className="landing-image">
                     <img src={landingPic} alt="img"/>
                 </div>
             </section>
