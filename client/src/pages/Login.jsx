@@ -29,9 +29,8 @@ function Login() {
             const res = await axios.post("/api/auth/userlogin", user);
             if(res){
                 toast.dismiss(Loadtoast);
-                toast.success("Login Successful");
-                const data = {name:res.data.name, id:res.data._id, email:res.data.email}
-                localStorage.setItem("userInfo", JSON.stringify(data));
+                toast(res.data.message);
+                
                 navigate("/");
             }
 
@@ -39,7 +38,6 @@ function Login() {
         catch(e) {
             toast.dismiss(Loadtoast);
             toast.error("Wrong credentials ! Try Again");
-            // console.log("err msg:", e);
         }
 
     }

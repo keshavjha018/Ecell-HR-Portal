@@ -2,6 +2,8 @@ const Users = require("../../db/models/user.schema");
 const Utils = require("../services/utility.services");
 const bcrypt = require("bcryptjs");
 const cookiee = require("cookie-parser");
+const EmailService = require("../services/email.services");
+
 
 class Auth {
     async emailVerification(req, res) {
@@ -23,30 +25,46 @@ class Auth {
         const { email, password } = req.body;
         try {
             const user = await Users.findOne({ email: email });
+        
+            //User not Exists
             if (!user) {
-                return res.status(404).json("User Not Registered");
+                return res.status(200).json({message:"User Not Registered"});
             }
 
+            //User not Verified
+            if(user.verification === false){
+            
+                //Send a verification mail again
+                let Mail = new EmailService();
+                Mail.sendVerificationMail(user.token, user._id, user.email, user.name, (response) => {
+                    //  Verification mail sent
+                });
+                return res.status(200).json({
+                    error:false, 
+                    message: "Email is unverified: Please check your email !"
+                });
+            }
+
+            // Checking Password
             const isMatch = await bcrypt.compare(password, user.password);
             if (isMatch === false) {
-                return res.status(401).json("Incorrect Password");
+                return res.status(200).json({message:"Incorrect Password"});
             }
 
-            if (user.verification === true) {
-                const token = await user.generateAuthToken();
 
-                //save token in cookie
-                res.cookie("jwt", token, {
-                    expires: new Date(Date.now() + 604800000),
-                    httpOnly: true,
-                    // secure: true
-                });
+            //NOW PROCEED
 
-                console.log("Login Success", user);
-                res.status(200).send(user);
-            } else {
-                res.status(400).json("Email Not Verified");
-            }
+            const token = await user.generateAuthToken();
+            //save token in cookie
+            res.cookie("jwt", token, {
+                expires: new Date(Date.now() + 604800000),
+                httpOnly: true,
+                // secure: true
+            });
+
+            console.log("Login Success", user);
+            res.status(200).json({message:"Login Successful"});
+
         } catch (error) {
             console.log(error);
             res.status(500).json(error);
