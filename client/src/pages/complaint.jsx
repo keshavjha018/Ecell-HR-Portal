@@ -1,12 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useEffect } from "react";
 
 
 const ComplaintForm = () => {
   const navigate = useNavigate();
-  const userData = JSON.parse(localStorage.getItem("userInfo"));
+  const userData = JSON.parse(localStorage.getItem("userInfo")) || null;
+
+
+  // useEffect(()=>{
+  //   async function checkLoggedIn(){
+  //     try{
+  //       console.log("in tryyy");
+  //       if(!userData){
+  //         navigate("/login");
+  //       }
+  //     }catch(e){
+  //       navigate("/login");
+  //     }
+  //   };
+  //   checkLoggedIn();
+  // }, []);
 
   let string = "@iiitdwd.ac.in";
   const regno = userData.email.replace(string, "");

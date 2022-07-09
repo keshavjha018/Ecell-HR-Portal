@@ -58,12 +58,15 @@ class Auth {
             //save token in cookie
             res.cookie("jwt", token, {
                 expires: new Date(Date.now() + 604800000),
-                httpOnly: true,
+                httpOnly: true,         // prevents cookie access via JS
                 // secure: true
             });
 
             console.log("Login Success", user);
-            res.status(200).json({message:"Login Successful"});
+        
+            res.status(200).json({userId: user._id, name: user.name, email: user.email , 
+                                    message:"Login Successful", success:true
+                                });
 
         } catch (error) {
             console.log(error);

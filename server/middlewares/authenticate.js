@@ -1,22 +1,39 @@
+// This module verifies & validates JWT to protect routes 
+// which we want only logged In users to access
+
 const Users = require("../db/models/user.schema");
 const jwt = require("jsonwebtoken");
 const cookie = require("cookie-parser");
 require("dotenv").config();
 
-const loginRequired = async(req,res,next)=> {
+const requiresAuth = async(req, res, next)=> {
 
     try {
-        const token = req.cookies.jwt;      //"jwt" = cookie name
-        if(token) {
-            const validToken = jwt.verify(token, process.env.JWT_SECRET);
-            const user = await Users.findOne({_id:validToken._id  });
-            if(!user){ 
-                throw new Error("Authentication problem .....");
-            }
+        // Get JWT "token" named "jwt" from cookies [might not exist]
+        const token = req.cookies.jwt;
 
-            req.rootUser = user;
-            req.token = token;
-            next();
+        // Found
+        if(token) {
+            const validToken = jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken)=> {
+                if(err){
+                    console.log(err.message);
+                    res.redirect("/login");
+                }else {
+                    console.log(decodedToken);
+                    next();
+                }
+            });
+        
+            // const user = await Users.findOne({_id:validToken._id  });
+
+            // // CASE: Invalid or Expired Token
+            // if(!user){ 
+            //     throw new Error("Authentication problem .....");
+            // }
+
+            // req.rootUser = user;
+            // req.token = token;
+            // next();
 
             // if(validToken){
             //     res.user = validToken.id;
@@ -29,9 +46,9 @@ const loginRequired = async(req,res,next)=> {
         }
         else{
             console.log("Token Not Found");
-            res.redirect("/user/login");
+            res.redirect("/login");
         }
     }catch(e) {res.status(401).json(e)}
 }
 
-module.exports = loginRequired;
+module.exports = requiresAuth;
