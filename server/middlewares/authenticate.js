@@ -14,12 +14,14 @@ const requiresAuth = async(req, res, next)=> {
 
         // Found
         if(token) {
-            const validToken = jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken)=> {
+            const validToken = jwt.verify(token, process.env.JWT_SECRET, async(err, decodedToken)=> {
                 if(err){
                     console.log(err.message);
                     res.redirect("/login");
                 }else {
                     console.log(decodedToken);
+                    // const user = await Users.findOne({_id : decodedToken._id  });
+                    // req.user  = user
                     next();
                 }
             });

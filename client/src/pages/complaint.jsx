@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import { useEffect } from "react";
-
 
 const ComplaintForm = () => {
   const navigate = useNavigate();
-  const userData = JSON.parse(localStorage.getItem("userInfo")) || null;
+  const defaultUserData = {
+    email: "Please Log In First",
+    name: "Please Log In First",
+    id: "Please Log In First"
+  }
+  const userData = JSON.parse(localStorage.getItem("userInfo")) || defaultUserData;
 
 
   // useEffect(()=>{
@@ -137,15 +140,17 @@ const ComplaintForm = () => {
               </div>
               <div>
                 <span className='lg:text-[17px] lg:leading-[4rem] font-semibold ml-[2rem] text-2xl leading-[5rem] after:content-["*"] after:ml-0.5 after:text-red-500 '>
-                  Type
+                  Type of Issue
                 </span>
                 <div className="mt-[-11px] ml-[2rem]">
                   <select className="rounded-md lg:text-[1.1rem] text-xl lg:w-1/2 w-3/4 h-12 lg:h-10 font-sans pb-0" name="type" value={complaintInfo.type} onChange={handleComplaintChange}>
-                    <option selected disabled>
+                    <option defaultValue="" disabled>
                       Select
                     </option>
-                    <option>Topic</option>
+                    <option>Issue</option>
                     <option>Boycott</option>
+                    <option>Abuse</option>
+                    <option>Discrimination</option>
                     <option>Other</option>
                   </select>
                 </div>
@@ -153,7 +158,7 @@ const ComplaintForm = () => {
             </div>
             <div>
               <span className='lg:text-[17px] lg:leading-[4rem] font-semibold ml-[2rem] text-2xl leading-[5rem] after:content-["*"] after:ml-0.5 after:text-red-500'>
-                Discription
+                Description
               </span>
               <div className="mt-[-11px] ml-[2rem]">
                 <textarea
@@ -165,15 +170,15 @@ const ComplaintForm = () => {
             <div className="grid lg:grid-cols-2 grid-cols-1">
               <button
                 type="button"
-                className="box-border mx-auto border-solid border-[3px] border-[#FC5050] rounded mt-[3rem] h-12 w-28 lg:h-10 lg:w-20 hover:bg-[#FC5050] hover:text-white p-1 text-[14px] px-[0.7rem] text-[#FC5050] hover:text-[16px]"
-                onClick={cancelComplaint}>
-                Cancle
-              </button>
-              <button
-                type="button"
                 className="box-border mx-auto border-solid border-[3px] border-[#08CA33] rounded mt-[3rem] h-12 w-28 lg:h-10 lg:w-20 mb-8 hover:bg-[#08CA33] hover:text-white p-1 text-[14px] px-[0.7rem] text-[#08CA33] hover:text-[16px]"
                 onClick={verifyUser}>
                 Submit
+              </button>
+              <button
+                type="button"
+                className="box-border mx-auto border-solid border-[3px] border-[#FC5050] rounded mt-[3rem] h-12 w-28 lg:h-10 lg:w-20 hover:bg-[#FC5050] hover:text-white p-1 text-[14px] px-[0.7rem] text-[#FC5050] hover:text-[16px]"
+                onClick={cancelComplaint}>
+                Cancel
               </button>
             </div>
           </div>
