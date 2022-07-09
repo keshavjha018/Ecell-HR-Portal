@@ -31,7 +31,20 @@ function Login() {
                 toast.dismiss(Loadtoast);
                 toast(res.data.message);
                 
-                navigate("/");
+                // On Successful Login
+                if(res.data.success) {
+                
+                    // Store User data in LocalStorage
+                    let userInfoData = {
+                        name: res.data.name,
+                        id: res.data.userId,
+                        email: res.data.email
+                    }
+                    localStorage.setItem("userInfo", JSON.stringify(userInfoData));
+                
+                    //Redirect to Homepage
+                    navigate("/");
+                }
             }
 
         }
