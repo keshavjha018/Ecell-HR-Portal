@@ -37,30 +37,30 @@ function Footer() {
                     </div>
                     {/* Social Media */}
                     <div className="social-media">
-                        <Link to="#">
+                        <a href="/"  target="_blank" rel='noopener noreferrer'>
                             <img className='footerSocialImg'
                                 src="https://raw.githubusercontent.com/MohamedAridah/frontendmentor_url-shortening-api/main/images/icon-facebook.svg"
                                 alt="Facebook Logo"
                             />
-                        </Link>
-                        <Link to="#">
+                        </a>
+                        <a href="https://twitter.com/ecelliiitdwd" target="_blank" rel='noopener noreferrer'>
                             <img className='footerSocialImg'
                                 src="https://raw.githubusercontent.com/MohamedAridah/frontendmentor_url-shortening-api/main/images/icon-twitter.svg"
                                 alt="Twitter Logo"
                             />
-                        </Link>
-                        <Link to="#">
+                        </a>
+                        <a href="/"  target="_blank" rel='noopener noreferrer'>
                             <img className='footerSocialImg'
                                 src="https://raw.githubusercontent.com/MohamedAridah/frontendmentor_url-shortening-api/main/images/icon-pinterest.svg"
                                 alt="Pinterest Logo"
                             />
-                        </Link>
-                        <Link to="#">
+                        </a>
+                        <a href="https://www.instagram.com/ecell.iiitdwd/"  target="_blank" rel='noopener noreferrer'>
                             <img className='footerSocialImg'
                                 src="https://raw.githubusercontent.com/MohamedAridah/frontendmentor_url-shortening-api/main/images/icon-instagram.svg"
                                 alt="Instagram Logo"
                             />
-                        </Link>
+                        </a>
                     </div>
                 </div>
                 {/* Made By */}
