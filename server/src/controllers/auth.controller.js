@@ -75,8 +75,9 @@ class Auth {
     }
 
     async Logout(req, res) {
-        res.cookie("access-token", "", { maxAge: 1 });
-        res.redirect("/userlogin");
+        //Clear Cookies
+        res.clearCookie("jwt");
+        res.status(200).json({message: "Logged Out"});
     }
 }
 

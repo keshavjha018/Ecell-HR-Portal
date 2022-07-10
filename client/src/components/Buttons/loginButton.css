@@ -1,0 +1,20 @@
+.LoginButton {
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(0, 228, 228);
+    font-family: Roboto;
+    font-weight: 500;
+    margin: 5px;
+}
+
+.LoginButton:hover{
+    cursor: pointer;
+    background-color: rgb(2, 209, 209);
+}
+
+@media screen and (max-width: 450px) {
+    .LoginButton {
+        margin: 0px;
+        font-size:small;
+    }
+}
