@@ -1,3 +1,8 @@
+//For Production
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config({path: __dirname+'/.env'});
+}
+
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const cors = require('cors');
@@ -16,6 +21,16 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use('/', router);
 
+//----Serving React App on Production Side ------
+
+if (process.env.NODE_ENV !== 'production') {
+    const path = require("path");
+
+    app.get("/", (req,res)=>{
+        app.use(express.static(path.resolve(__dirname, "../client", "build" )));
+        res.sendFile(path.resolve(__dirname, "../client", "build", "index.html" ));
+    })
+}
 
 //---------🌐 SERVER 🌐------------
 
