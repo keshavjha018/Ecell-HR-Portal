@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import "./signup.css";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import {useNavigate} from 'react-router-dom';
+// import {useNavigate} from 'react-router-dom';
 
 function Signup() {
 
@@ -13,7 +13,7 @@ function Signup() {
         password:"",
         rePassword:""
     })
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     //e=> event
     const handleChange = e => {
@@ -42,7 +42,6 @@ function Signup() {
 
             if(res){
                 toast(res.data.message);
-                navigate('/login');
             }
         }
         catch(e) {

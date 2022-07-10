@@ -39,27 +39,33 @@ class User {
                 //Hash Password
                 const salt = await bcrypt.genSalt(10);
                 password = await bcrypt.hash(password, salt);
+
+                // Generate Verification token
+                const Token = await Utility.generateToken();
     
                 //Store Details
                 const details = new Users({
                     name: name,
                     email: email,
                     password: password,
+                    token: Token
                 })
     
                 //Save
                 var newUser = await details.save();
     
-                //Generate & Store JWToken in db
-                const Token = await details.generateAuthToken();
-                await newUser.updateOne({token: Token});
+                // No need to save token while signup => gen at login only
+                // //Generate & Store JWToken in db
+                // const Token = await details.generateAuthToken();
+                // await newUser.updateOne({token: Token});
     
-                //save Token in cookie
-                res.cookie("jwt", Token, {
-                    expires: new Date(Date.now() + 604800000),
-                    httpOnly: true,
-                    // secure: true   //allows only https connections
-                });
+                // //save Token in cookie
+                // res.cookie("jwt", Token, {
+                //     expires: new Date(Date.now() + 604800000),
+                //     httpOnly: true,
+                //     // secure: true   //allows only https connections
+                // });
+
     
                 //Send verification Mail
                 let Mail = new EmailService();

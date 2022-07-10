@@ -44,6 +44,7 @@ function Login() {
                 
                     //Redirect to Homepage
                     navigate("/");
+                    window.location.reload();       // Refresh page
                 }
             }
 

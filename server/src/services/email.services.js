@@ -63,14 +63,15 @@ class Email {
         let subject = "Complaint Registered";
 
         try {
-            let bodyContent = `Hey, ${complaint.userId.name} <br> <br> Your complaint is successfully registered. <br>We will solve it as soon as possible<br> 
-                Complaint details:<br>
+            let bodyContent = `Hey, ${complaint.userId.name} <br> <br> Your complaint is successfully registered. <br>We will solve it as soon as possible
+                <br> <br>
+                <b> Complaint Details: </b> <br>
                 Name: ${complaint.userId.name} <br>
                 Reg No:${regno} <br>
                 ComplaintId: ${complaint._id} <br>
                 Subject: ${complaint.subject} <br>
-                offender: ${complaint.offender} <br>
-                More Information: <br><br>  
+                Offender: ${complaint.offender} <br>
+                More Information: ${complaint.description} <br><br>  
             This mail is auto generated. Do not Reply`; //paste the respective link in More Information
             mailInfo.subject = subject;
             mailInfo.to = complaint.userId.email;

@@ -33,8 +33,8 @@ function EmailVerify() {
     return (
         <>
             <div>
-                <h1> user verification - team vidkarya</h1>
-                <h3>There is an error in verification......</h3>
+                <h1> User verification</h1>
+                {/* <h3>There is an error in verification......</h3> */}
             </div>
         </>
     );

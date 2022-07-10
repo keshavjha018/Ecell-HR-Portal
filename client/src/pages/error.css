@@ -1,0 +1,21 @@
+.error {
+    background-color: white;
+}
+
+.errorPg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorImg {
+    width: 50%;
+    height: calc(100vh - 183px);
+}
+
+@media screen and (max-width: 450px) {
+    .errorImg {
+        height: auto;
+        width: auto;
+    }
+}

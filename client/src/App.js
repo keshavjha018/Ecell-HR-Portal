@@ -8,6 +8,7 @@ import Signup from './pages/Signup';
 import ComplaintForm from "./pages/complaint";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Error from './pages/Error';
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
         <Route exact path ="/login" element={<Login/>} />
         <Route exact path="/complaint" element={<ComplaintForm />} />
         <Route exact path ="/verify/mail" element={<EmailVerify/>} />
-        {/* <Route exact path="*" element={<Error />} /> */}
+        <Route exact path="*" element={<Error />} />
       </Routes>
       <Footer />
     </Router>

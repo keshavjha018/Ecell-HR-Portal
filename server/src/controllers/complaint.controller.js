@@ -8,7 +8,7 @@ const EmailService = require("../services/email.services");
 class Complaint {
     
     async create(req, res) {
-        const { subject, offender, type, discription, regno } = req.body;
+        const { subject, offender, type, description, regno } = req.body;
         const { id } = req.params;
         console.log(id);
         try {
@@ -18,7 +18,7 @@ class Complaint {
                     subject: subject,
                     offender: offender,
                     type: type,
-                    discription: discription,
+                    description: description,
                 });
                 const newComplaint = await post.save();
                 let Mail = new EmailService();
