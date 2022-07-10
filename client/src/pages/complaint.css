@@ -1,0 +1,94 @@
+.complaintBox {
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid rgb(132, 235, 255);
+    border-radius: 15px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    font-family: Roboto;
+}
+
+.complaintHeading {
+    font-size: xx-large !important;
+    font-weight: 500;
+    line-height: 5rem;
+}
+
+.inputHead {
+    font-size: 1.3rem !important;
+    font-weight: 500;
+}
+
+.inputBox {
+    display: flex;
+}
+
+.autofillBoxText {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.inputBoxText {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(188, 188, 188);
+    border-radius: 5px;
+}
+
+.inputBoxText:focus {
+    outline: none;
+}
+
+.issueBox {
+    border: 1px solid rgb(188, 188, 188);
+    border-radius: 5px;
+}
+.issueBox:focus{
+    outline: none;
+}
+
+@media screen and (max-width: 450px) {
+
+    .complaintBox {
+        width: 95%;
+        padding: 2px;
+    }
+
+    .complaintHeading {
+        font-size: x-large !important;
+        line-height: 4rem;
+    }
+
+    .inputHead {
+        font-size: 1.3rem !important;
+        margin: 1rem;
+    }
+
+    .inputBox {
+        margin: 1rem;
+        display: flex;
+    }
+
+    .issueBox {
+        margin: 1rem;
+    }
+
+    .btnContainer {
+        display: flex;
+        justify-content:space-between;
+    }
+
+    .inputBoxText {
+        width: 90%;
+        height: 2.6rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .descriptnBox {
+        height: 5rem;
+        width: 100%;
+    }
+}

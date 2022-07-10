@@ -5,31 +5,39 @@ import axios from "axios";
 
 function EmailVerify() {
     const navigate = useNavigate();
-    const {search} = useLocation();
-    const{userId, token} = queryString.parse(search);
+    const { search } = useLocation();
+    const { userId, token } = queryString.parse(search);
 
-    useEffect(()=>{
-        const verifyUser = async ()=>{
+    useEffect(() => {
+        const verifyUser = async () => {
             try {
-                const {data} = await axios.post(`api/auth/mailverification`, {userId, token});
+                const { data } = await axios.put("/api/auth/mailverification", {
+                    userId,
+                    token,
+                });
+                console.log(data);
                 if (data) {
-                    localStorage.setItem("userInfo", JSON.stringify(data));
+                    // localStorage.setItem("userInfo", JSON.stringify(data));
                     console.log("user verified");
-                    navigate("/");
+                    navigate("/login");
                 } else {
                     console.log("error... in response data");
                 }
-            }
-            catch (error) {
+            } catch (error) {
                 console.log("error in verification ", error.message);
             }
-        }
+        };
         verifyUser();
-    },[userId, token]);
+    }, []);
 
     return (
-        <h2>Email Verified Successfully</h2>
-    )
+        <>
+            <div>
+                <h1> User verification</h1>
+                {/* <h3>There is an error in verification......</h3> */}
+            </div>
+        </>
+    );
 }
 
-export default EmailVerify
+export default EmailVerify;

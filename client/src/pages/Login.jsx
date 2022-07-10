@@ -26,19 +26,32 @@ function Login() {
 
         const Loadtoast = toast.loading("Logging in Please wait !");
         try{
-            const res = await axios.post("http://localhost:8000/api/auth/userlogin", user);
+            const res = await axios.post("/api/auth/userlogin", user);
             if(res){
                 toast.dismiss(Loadtoast);
-                toast.success("Login Successful")
-                // localStorage.setItem("userInfo", JSON.stringify(data));
-                navigate("/");
+                toast(res.data.message);
+                
+                // On Successful Login
+                if(res.data.success) {
+                
+                    // Store User data in LocalStorage
+                    let userInfoData = {
+                        name: res.data.name,
+                        id: res.data.userId,
+                        email: res.data.email
+                    }
+                    localStorage.setItem("userInfo", JSON.stringify(userInfoData));
+                
+                    //Redirect to Homepage
+                    navigate("/");
+                    window.location.reload();       // Refresh page
+                }
             }
 
         }
         catch(e) {
             toast.dismiss(Loadtoast);
             toast.error("Wrong credentials ! Try Again");
-            // console.log("err msg:", e);
         }
 
     }
@@ -55,7 +68,7 @@ function Login() {
                     {/* <button onClick={handleForgotPassword} className="loginForgot">Forgot Password ?</button> */}
 
                     <hr className="hr" />
-                    <span className="newText">New User?
+                    <span className="newTextLogin">New User?
                         <Link className="signUpBtn" to="/signup">Create Account</Link>
                     </span>
 

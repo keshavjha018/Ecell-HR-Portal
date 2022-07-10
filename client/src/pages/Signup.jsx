@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import "./signup.css";
 import axios from "axios";
 import { toast } from 'react-toastify';
-import {useNavigate} from 'react-router-dom';
+// import {useNavigate} from 'react-router-dom';
 
 function Signup() {
 
@@ -13,7 +13,7 @@ function Signup() {
         password:"",
         rePassword:""
     })
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     //e=> event
     const handleChange = e => {
@@ -22,6 +22,11 @@ function Signup() {
     }
 
     const Register= async()=>{
+
+        if(!user.email.includes("@iiitdwd.ac.in")){
+            toast.error("Please use Institute E-Mail Id");
+            return;
+        }
 
         if(user.password !== user.rePassword) {
             toast.error("Password and Confirm Password Must be Same !");
@@ -32,16 +37,12 @@ function Signup() {
         const loadToast = toast.loading("Signing Up. Please Wait !")
 
         try{
-            const res = await axios.post("http://localhost:8000/api/user/signup", user);
-            
+            const res = await axios.post("/api/user/signup", user);
             toast.dismiss(loadToast);
 
             if(res){
-                toast.success("A verification link has been sent to your email.");
+                toast(res.data.message);
             }
-
-            console.log("Signup Successful", res);
-            navigate('/login'); //issue here
         }
         catch(e) {
             toast.dismiss(loadToast);
