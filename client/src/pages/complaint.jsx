@@ -34,7 +34,7 @@ const ComplaintForm = () => {
     subject: "",
     offender: "",
     type: "",
-    discription: "",
+    description: "",
 });
 
   const handleComplaintChange = (e) => {
@@ -44,9 +44,9 @@ const ComplaintForm = () => {
   };
 
   const verifyUser = async () => {
-    const { subject, offender, type, discription, } = complaintInfo;
+    const { subject, offender, type, description, } = complaintInfo;
 
-    if(!subject || !offender || !type || !discription) {
+    if(!subject || !offender || !type || !description) {
       toast.error("fill all the fields before sign up!!")
       return;
   }
@@ -60,7 +60,7 @@ const ComplaintForm = () => {
         subject,
         offender,
         type,
-        discription,
+        description,
         regno
       });
       toast.dismiss(loadToast);
@@ -71,7 +71,7 @@ const ComplaintForm = () => {
       }
     } catch (error) {
       toast.dismiss(loadToast);
-      toast.error("Something went wrong !");
+      toast.error("Something went wrong ! Please Log In ");
       console.log("error in verification ", error.message);
     }
   };
@@ -163,7 +163,7 @@ const ComplaintForm = () => {
               <div className="mt-[-11px] ml-[2rem]">
                 <textarea
                   className="text-[#2B2B2B] p-1 lg:text-[14px] text-xl lg:w-1/2 w-3/4 h-20 lg:h-18 pl-[0.7rem] box-border border-solid border-[1px] border-black rounded-md placeholder:italic placeholder:text-slate-400"
-                  placeholder="Details" name="discription" value={complaintInfo.discription} onChange={handleComplaintChange}
+                  placeholder="Details" name="description" value={complaintInfo.description} onChange={handleComplaintChange}
                 />
               </div>
             </div>
