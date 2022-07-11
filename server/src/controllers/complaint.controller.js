@@ -1,8 +1,7 @@
 //Controllers for complaint class
 
-const Users = require("./../../db/models/user.schema");
 const Complaints = require("./../../db/models/complaint.schema");
-const Utility = require("../services/Utility.services");
+const Utility = require("../services/utility.services");
 const EmailService = require("../services/email.services");
 
 class Complaint {

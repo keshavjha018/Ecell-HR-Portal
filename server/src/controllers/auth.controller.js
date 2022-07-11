@@ -1,7 +1,5 @@
 const Users = require("../../db/models/user.schema");
-const Utils = require("../services/utility.services");
 const bcrypt = require("bcryptjs");
-const cookiee = require("cookie-parser");
 const EmailService = require("../services/email.services");
 
 
