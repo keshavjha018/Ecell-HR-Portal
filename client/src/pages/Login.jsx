@@ -26,7 +26,7 @@ function Login() {
 
         const Loadtoast = toast.loading("Logging in Please wait !");
         try{
-            const res = await axios.post("/api/auth/userlogin", user);
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND}/api/auth/userlogin`, user);
             if(res){
                 toast.dismiss(Loadtoast);
                 toast(res.data.message);

@@ -11,7 +11,7 @@ function EmailVerify() {
     useEffect(() => {
         const verifyUser = async () => {
             try {
-                const { data } = await axios.put("/api/auth/mailverification", {
+                const { data } = await axios.put(`${process.env.REACT_APP_BACKEND}/api/auth/mailverification`, {
                     userId,
                     token,
                 });

@@ -57,7 +57,7 @@ const ComplaintForm = () => {
 
     try {
       let id = userData.id;
-      const { data } = await axios.post(`/api/complaint/${id}`, {
+      const { data } = await axios.post(`${process.env.REACT_APP_BACKEND}/api/complaint/${id}`, {
         subject,
         offender,
         type,

@@ -14,7 +14,7 @@ function LogoutButton() {
     
         const Loadtoast = toast.loading("Logging in Please wait !");
         try{
-            const res = await axios.get("/api/auth/logout");
+            const res = await axios.get(`${process.env.REACT_APP_BACKEND}/api/auth/logout`);
             console.log(res);
             toast.dismiss(Loadtoast);
             toast.success(res.data.message)

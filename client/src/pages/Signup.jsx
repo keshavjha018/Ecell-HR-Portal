@@ -37,7 +37,7 @@ function Signup() {
         const loadToast = toast.loading("Signing Up. Please Wait !")
 
         try{
-            const res = await axios.post("/api/user/signup", user);
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND}/api/user/signup`, user);
             toast.dismiss(loadToast);
 
             if(res){
