@@ -22,7 +22,7 @@ let mailInfo = {
     subject: ""
 };
 
-const apiHostUrl = "http://localhost:3000/";
+const apiHostUrl = "https://hr-portal-amber.vercel.app/";
 
 class Email {
 

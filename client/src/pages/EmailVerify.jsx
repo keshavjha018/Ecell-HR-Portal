@@ -33,7 +33,7 @@ function EmailVerify() {
     return (
         <>
             <div>
-                <h1> User verification</h1>
+                <h1> User Verification Complete</h1>
                 {/* <h3>There is an error in verification......</h3> */}
             </div>
         </>
